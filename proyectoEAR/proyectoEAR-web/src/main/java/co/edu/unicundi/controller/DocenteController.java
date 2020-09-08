@@ -8,8 +8,15 @@ package co.edu.unicundi.controller;
 
 
 import co.edu.unicundi.basedatos.Conexion;
+import co.edu.unicundi.controller.pojo.DocentePojo;
+import co.edu.unicundi.controller.pojo.Estudiante;
+import co.edu.unicundi.logica.DocenteService;
+import co.edu.unicundi.logica.EstudianteService;
 import javax.ejb.Stateless;
+import javax.validation.Valid;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -29,9 +36,18 @@ public class DocenteController {
     public Response retornarString() {
         System.out.println("entro mas o menso"); 
         Conexion conexion = new Conexion();
-        conexion.realizaConexion();
+        conexion.realizarConexion();
         String nombre = "entro";
         return Response.status(Response.Status.OK).entity(nombre).build();
     }
     
+    @Path("/insertar")
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response insertarDocente(@Valid DocentePojo docente) {
+        DocenteService service = new DocenteService();       
+        service.insertarDocente(docente);
+        return Response.status(Response.Status.OK).build();
+    }
 }

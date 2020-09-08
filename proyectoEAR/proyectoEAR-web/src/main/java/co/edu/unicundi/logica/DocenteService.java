@@ -5,12 +5,18 @@
  */
 package co.edu.unicundi.logica;
 
+import co.edu.unicundi.controller.pojo.DocentePojo;
+
+
+
 /**
  *
  * @author daiyd
  */
 public class DocenteService {
     
-    
+    public void insertarDocente(DocentePojo docente)  {
+       //
+    }
     
 }
